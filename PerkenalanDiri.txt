@@ -1,1 +1,4 @@
-Perkenalkab nama saya Sahrul sebagai murid SMK TI Bazma
+Perkenalkan nama saya Sahrul sebagai murid SMK TI Bazma
+
+
+ini data diubah dari visual studio kita
