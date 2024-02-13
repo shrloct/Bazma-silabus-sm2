@@ -37,6 +37,21 @@ CREATE TABLE Pengeluaran (
     jumlah decimal(10, 2),
     tanggal date);
 
+### LEFT JOIN
+SELECT *
+FROM pendapatan
+LEFT JOIN pengeluaran ON pendapatan.id_pendapatan = pengeluaran.id_pendapatan;
+
+### RIGHT JOIN
+SELECT *
+FROM pengeluaran
+RIGHT JOIN pendapatan ON pengeluaran.id_pendapatan = pendapatan.id_pendapatan;
+
+### INNER JOIN
+SELECT *
+FROM pendapatan
+INNER JOIN pengeluaran ON pendapatan.id_pendapatan = pengeluaran.id_pendapatan;   
+
 
 
 <!-- DATA -->
