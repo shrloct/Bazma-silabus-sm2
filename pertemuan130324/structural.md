@@ -33,3 +33,15 @@
 - Konfigurasi bug affectedRows menjadi length(✔)
 - Membuat Folder Helper(✔)
     - Membuat file responJson.js(✔)
+- Membuat controllers(✔)
+    - Membuat file: TodoController.js(✔)
+    - Membuat const function getAllTodo
+    - Membuat const function storeTodo
+    - Membuat const function updateTodo
+    - Membuat const function showTodo
+    - Membuat const function deleteTodo
+- Membuat Routes(✔)
+    - Membuat File: TodoRoute.js(✔)
+        - Membuat get todo [GET](✔)
+- Konfigurasi app.js(✔)
+    - Mengubah struktur kode todo => ['/api/todo'] (Get, Post, Put, Patch, Delete, get/:id)(✔)
