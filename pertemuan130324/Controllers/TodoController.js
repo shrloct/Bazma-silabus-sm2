@@ -13,6 +13,10 @@ const getAllTodo = (req, res) => {
 // POST menambahkan data baru todo = localhost:6000/api/todos /localhost:6000/todos
 const storeTodo = (req, res) => {
     const { title, description } = req.body;
+    if (!title || !description) {
+        return response(res, 400, { message: 'Data tidak boleh kosong' })
+    }
+
     database.query('insert into todo (title, description) values (?, ?)', [title, description], (err, result) => {
         if (err) throw err;
         response(res, 201, { message: 'Success created todo' })
@@ -42,7 +46,7 @@ const updateTodo = (req, res) => {
 }
 
 // [DELETE] menghapus data todo berdasarkan id = localhost:6000/api/todo/1 / localhost:6000/api/todo/1
-const deleteTodo = (req, res) => {
+const deleteTodoId = (req, res) => {
     const id = req.params.id;
     database.query('DELETE FROM todo WHERE id = ?', [id], (err, result) => {
         if (err) {
@@ -73,4 +77,4 @@ const showTodo = (req, res) => {
     });
 }
 
-module.exports = { getAllTodo, storeTodo, updateTodo, deleteTodo, showTodo }
+module.exports = { getAllTodo, storeTodo, updateTodo, deleteTodoId, showTodo }
