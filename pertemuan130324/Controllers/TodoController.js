@@ -15,11 +15,11 @@ const storeTodo = (req, res) => {
     const { title, description } = req.body;
 
     if (!title && !description) {
-        return response(res, 400, { message: 'Data harus diisi tidak boleh kosong' })
+        return response(res, 400, { message: 'Error vadlidation', data: { title: "Title harus diisi", description: "Deskripsi harus diisi" } })
     } else if (!title) {
-        return response(res, 400, { message: 'Title tidak boleh kosong' })
+        return response(res, 400, { message: 'Error vadlidation', data: { title: "Title harus diisi" } })
     } else if (!description) {
-        return response(res, 400, { message: 'Deskripsi tidak boleh kosong' })
+        return response(res, 400, { message: 'Error vadlidation', data: { description: "Deskripsi harus diisi" } })
     }
 
 
@@ -35,11 +35,11 @@ const updateTodo = (req, res) => {
     const { title, description } = req.body;
 
     if (!title && !description) {
-        return response(res, 400, { message: 'Data harus diisi tidak boleh kosong' })
+        return response(res, 400, { message: 'Error vadlidation', data: { title: "Title harus diisi", description: "Deskripsi harus diisi" } })
     } else if (!title) {
-        return response(res, 400, { message: 'Title tidak boleh kosong' })
+        return response(res, 400, { message: 'Error vadlidation', data: { title: "Title harus diisi" } })
     } else if (!description) {
-        return response(res, 400, { message: 'Deskripsi tidak boleh kosong' })
+        return response(res, 400, { message: 'Error vadlidation', data: { description: "Deskripsi harus diisi" } })
     }
 
     database.query("UPDATE todo SET title = ?, description = ? WHERE id = ?", [title, description, id], (err, result) => {
