@@ -13,9 +13,15 @@ const getAllTodo = (req, res) => {
 // POST menambahkan data baru todo = localhost:6000/api/todos /localhost:6000/todos
 const storeTodo = (req, res) => {
     const { title, description } = req.body;
-    if (!title || !description) {
-        return response(res, 400, { message: 'Data tidak boleh kosong' })
+
+    if (!title && !description) {
+        return response(res, 400, { message: 'Data harus diisi tidak boleh kosong' })
+    } else if (!title) {
+        return response(res, 400, { message: 'Title tidak boleh kosong' })
+    } else if (!description) {
+        return response(res, 400, { message: 'Deskripsi tidak boleh kosong' })
     }
+
 
     database.query('insert into todo (title, description) values (?, ?)', [title, description], (err, result) => {
         if (err) throw err;
@@ -28,15 +34,19 @@ const updateTodo = (req, res) => {
     const id = req.params.id;
     const { title, description } = req.body;
 
-    if (!title || !description) {
-        return response(res, 400, { message: 'Data tidak boleh kosong' })
+    if (!title && !description) {
+        return response(res, 400, { message: 'Data harus diisi tidak boleh kosong' })
+    } else if (!title) {
+        return response(res, 400, { message: 'Title tidak boleh kosong' })
+    } else if (!description) {
+        return response(res, 400, { message: 'Deskripsi tidak boleh kosong' })
     }
 
     database.query("UPDATE todo SET title = ?, description = ? WHERE id = ?", [title, description, id], (err, result) => {
         if (err) {
             throw err;
         } else {
-            if (result.length === 0) {
+            if (result.affectedRows === 0) {
                 response(res, 404, { message: `Todo ${id} not found ` })
             } else {
                 response(res, 200, { message: 'Success UPDATE todo' })
@@ -52,7 +62,7 @@ const deleteTodoId = (req, res) => {
         if (err) {
             throw err;
         } else {
-            if (result.length === 0) {
+            if (result.affectedRows === 0) {
                 response(res, 404, { message: `Todo ${id} not found ` })
             } else {
                 response(res, 200, { message: 'Success DELETE todo' })
